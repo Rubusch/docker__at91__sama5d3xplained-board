@@ -1,5 +1,5 @@
 #!/bin/bash -e
-export DEFCONFIG=sama5d2_xplained_graphics_defconfig
+export DEFCONFIG=sama5d3_xplained_graphics_defconfig
 cd ~/buildroot-at91
 ###
 ## don't use external repo
