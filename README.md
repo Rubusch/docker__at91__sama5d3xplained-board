@@ -42,6 +42,6 @@ $ docker images
 $ docker run -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/output rubuschl/at91-sama5d3-buildroot:20191104161353 /bin/bash
 ```
 
-TODO: yocto setup
-TODO: explain SAM-BA tool
-TODO: explain network boot
+TODO: yocto setup  
+TODO: explain SAM-BA tool  
+TODO: explain network boot  
