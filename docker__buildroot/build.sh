@@ -16,4 +16,4 @@ make -j8
 
 ## obtain build artifacts
 sudo chown $(whoami):$(whoami) -R ~/output
-cp -arfL ~/buildroot/output/* ~/output/
+cp -arfL ~/buildroot-at91/output/* ~/output/
