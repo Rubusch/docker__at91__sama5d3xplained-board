@@ -84,14 +84,14 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 USER $USER
 
 ## use official sources
-RUN cd /home/$USER && git clone --branch ${BRANCH} -j4 https://github.com/linux4sam/buildroot-at91.git
-#RUN cd /home/$USER && git clone -j4 https://github.com/linux4sam/buildroot-at91.git
-#RUN cd /home/$USER/buildroot-at91/ && git checkout linux4sam_6.2 -b buildroot-at91-linux4sam_6.2
+#RUN cd /home/$USER && git clone --branch ${BRANCH} -j4 https://github.com/linux4sam/buildroot-at91.git
+
+## alternatively, use my sources (when mounted output folder is used)
+RUN cd /home/$USER && git clone --branch lothar/${BRANCH} -j4 https://github.com/Rubusch/buildroot-at91.git
+
 
 ## use official sources
 RUN cd /home/$USER && git clone --branch ${BRANCH} https://github.com/linux4sam/buildroot-external-microchip.git
-#RUN cd /home/$USER && git clone https://github.com/linux4sam/buildroot-external-microchip.git
-#RUN cd /home/$USER/buildroot-external-microchip/ && git checkout linux4sam_6.2 -b buildroot-external-microchip-linux4sam_6.2
 
 
 ################################################################################
