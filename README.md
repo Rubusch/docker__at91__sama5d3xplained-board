@@ -26,7 +26,7 @@ $ docker images
     rubuschl/at91-sama5d3-buildroot 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
     ...
 
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/dl:/home/$USER/buildroot/dl -v $PWD/output:/home/$USER/buildroot/output rubuschl/at91-sama5d3-buildroot:20191104161353 /bin/bash
+$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/dl:/home/$USER/buildroot-at91/dl -v $PWD/output:/home/$USER/buildroot-at91/output rubuschl/at91-sama5d3-buildroot:20191104161353 /bin/bash
 
 docker $> build.sh
 ```

@@ -9,7 +9,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ## in case docker complains for a not set USER, perhaps you forgot to use --build-arg USER=$USER
 ARG USER="${USER}"
 
-ARG BRANCH="linux4sam_6.2"
+#ARG BRANCH="linux4sam_6.2"
+ARG BRANCH="2020.02-at91"
 
 
 ################################################################################
