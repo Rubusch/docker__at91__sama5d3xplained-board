@@ -1,11 +1,14 @@
 #!/bin/bash -e
 export USER="$(whoami)"
 export MY_HOME="/home/${USER}"
+export BUILDDIR="${MY_HOME}/buildroot-at91"
+
 export DEFCONFIG=sama5d3_xplained_graphics_defconfig
 
-sudo chown $(whoami):$(whoami) -R ~/output
+sudo chown ${USER}:${USER} -R ${BUILDDIR}/output
+sudo chown ${USER}:${USER} -R ${BUILDDIR}/dl
 
-cd ${MY_HOME}/buildroot-at91
+cd ${BUILDDIR}
 
 ###
 ## don't use external repo
@@ -28,4 +31,6 @@ make -j8
 ## deal with mounted devices / cross device links (in other containers
 ## I implemented a patch for that), now copy the build artifacts after
 ## the build in a separate step
-cp -arfL ~/buildroot-at91/output/* ~/output/
+#cp -arfL ~/buildroot-at91/output/* ~/output/
+##
+## fixed: by reimplementing a file_move() inside kconfig of buildroot fixes this
