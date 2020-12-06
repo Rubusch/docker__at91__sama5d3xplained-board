@@ -3,6 +3,8 @@ export USER="$(whoami)"
 export MY_HOME="/home/${USER}"
 export DEFCONFIG=sama5d3_xplained_graphics_defconfig
 
+sudo chown $(whoami):$(whoami) -R ~/output
+
 cd ${MY_HOME}/buildroot-at91
 
 ###
@@ -26,5 +28,4 @@ make -j8
 ## deal with mounted devices / cross device links (in other containers
 ## I implemented a patch for that), now copy the build artifacts after
 ## the build in a separate step
-sudo chown $(whoami):$(whoami) -R ~/output
 cp -arfL ~/buildroot-at91/output/* ~/output/
