@@ -7,4 +7,6 @@ jobs:
 
      # buildroot
      - run: cd ./docker__buildroot && docker build --build-arg USER=$USER -t rubuschl/at91-sama5d3-buildroot:123 .
-     - run: cd ./docker__buildroot && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/dl:/home/$USER/buildroot-at91/dl -v $PWD/output:/home/$USER/buildroot-at91/output rubuschl/at91-sama5d3-buildroot:123
+
+     ## build.sh is turned off, since it exceeds circleci's time limits
+     #- run: cd ./docker__buildroot && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/dl:/home/$USER/buildroot-at91/dl -v $PWD/output:/home/$USER/buildroot-at91/output rubuschl/at91-sama5d3-buildroot:123
