@@ -1,16 +1,12 @@
 FROM ubuntu:20.04
 MAINTAINER Lothar Rubusch <lotophagon@protonmail.com>
-WORKDIR /root
 ENV DEBIAN_FRONTEND=noninteractive
 
 
 ################################################################################
 ## the USER is needed to make it available as --build-arg
-## in case docker complains for a not set USER, perhaps you forgot to use --build-arg USER=$USER
-ARG USER="${USER}"
 
-#ARG BRANCH="linux4sam_6.2"
-ARG BRANCH="2020.02-at91"
+ARG USER="${USER}"
 
 
 ################################################################################
@@ -77,21 +73,6 @@ ENV LC_ALL en_US.UTF-8
 RUN useradd "$USER" -m --password "$USER"
 RUN usermod -a -G sudo "$USER"
 RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
-
-
-################################################################################
-## sources
-USER $USER
-
-## use official sources
-#RUN cd /home/$USER && git clone --branch ${BRANCH} -j4 https://github.com/linux4sam/buildroot-at91.git
-
-## alternatively, use my sources (when mounted output folder is used)
-RUN cd /home/$USER && git clone --branch lothar/${BRANCH} -j4 https://github.com/Rubusch/buildroot-at91.git
-
-
-## use official sources
-RUN cd /home/$USER && git clone --branch ${BRANCH} https://github.com/linux4sam/buildroot-external-microchip.git
 
 
 ################################################################################

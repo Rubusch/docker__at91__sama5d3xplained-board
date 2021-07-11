@@ -1,24 +1,32 @@
-#!/bin/bash -e
-export USER="$(whoami)"
-export MY_HOME="/home/${USER}"
-export BUILDDIR="${MY_HOME}/buildroot-at91"
+#!/bin/sh -e
 
-export DEFCONFIG=sama5d3_xplained_graphics_defconfig
+MY_USER="$(whoami)"
+MY_HOME="/home/${MY_USER}"
+BR_DIR="${MY_HOME}/buildroot"
+BUILD_DIR="${BR_DIR}/buildroot-at91"
+BR_DEFCONFIG="sama5d3_xplained_graphics_defconfig"
 
-sudo chown ${USER}:${USER} -R ${BUILDDIR}/output
-sudo chown ${USER}:${USER} -R ${BUILDDIR}/dl
+BRANCH="2020.02-at91"
 
-cd ${BUILDDIR}
+## permissions
+sudo chown "${MY_USER}:${MY_USER}" -R "${BR_DIR}/"
+
+FIRST="$(ls -A "${BR_DIR}")"
+if [ -z "${FIRST}" ]; then
+    cd "${BR_DIR}"
+    git clone --branch "lothar/${BRANCH}" -j4 https://github.com/Rubusch/buildroot-at91.git
+    git clone --branch "${BRANCH}" https://github.com/linux4sam/buildroot-external-microchip.git
+fi
+
 
 ###
+cd "${BUILD_DIR}"
 ## don't use external repo
-#make $DEFCONFIG
-
+#make $BR_DEFCONFIG
 ## or use external repo
-BR2_EXTERNAL=../buildroot-external-microchip/ make defconfig $DEFCONFIG
+BR2_EXTERNAL="../buildroot-external-microchip/" make defconfig "${BR_DEFCONFIG}"
 
-###
-make -j8
+make -j "$(nproc)"
 
 ## obtain build artifacts with a separate copy step
 ##

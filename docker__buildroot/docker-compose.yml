@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-    bbb_buildroot:
-        container_name: bbb_buildroot
-        image: ${USER}/bbb_buildroot
+    at91_buildroot:
+        container_name: at91_buildroot
+        image: ${USER}/at91_buildroot
         build:
             context: build_context
             dockerfile: Dockerfile
