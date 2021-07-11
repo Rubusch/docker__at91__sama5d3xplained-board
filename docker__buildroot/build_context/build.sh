@@ -2,6 +2,8 @@
 
 MY_USER="$(whoami)"
 MY_HOME="/home/${MY_USER}"
+SSH_DIR="${MY_HOME}/.ssh"
+SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
 BR_DIR="${MY_HOME}/buildroot"
 BUILD_DIR="${BR_DIR}/buildroot-at91"
 BR_DEFCONFIG="sama5d3_xplained_graphics_defconfig"
@@ -9,7 +11,12 @@ BR_DEFCONFIG="sama5d3_xplained_graphics_defconfig"
 BRANCH="2020.02-at91"
 
 ## permissions
-sudo chown "${MY_USER}:${MY_USER}" -R "${BR_DIR}/"
+for item in "${BR_DIR}" "${SSH_DIR}" "${MY_HOME}/.gitconfig"; do
+    if [ ! "${MY_USER}" == "$( stat -c %U ${item} )" ]; then
+        ## may take some time
+        sudo chown "${MY_USER}:${MY_USER}" -R ${item}
+    fi
+done
 
 ## ssh known_hosts
 touch ${SSH_KNOWN_HOSTS}
