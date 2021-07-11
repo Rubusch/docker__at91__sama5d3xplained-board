@@ -10,24 +10,32 @@ https://www.linux4sam.org/bin/view/Linux4SAM/Sama5d3XplainedMainPage
 https://www.linux4sam.org/bin/view/Linux4SAM/BuildRootBuild  
 
 
+## Tools Needed
+
+```
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-comp\
+\
+ose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod a+x /usr/local/bin/docker-compose
+```
+
+NB: Where 1.28.6 is the latest version (currently not supported by devian/ubuntu packa\
+ge management)
+
+
 ## Build
 
 ```
 $ cd ./docker__buildroot/
-$ time docker build --build-arg USER=$USER -t rubuschl/at91-sama5d3-buildroot:$(date +%Y%m%d%H%M%S) .
+$ docker-compose up
 ```
 
 
 ## Usage
 
 ```
-$ docker images
-    REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
-    rubuschl/at91-sama5d3-buildroot 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
-    ...
-
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/dl:/home/$USER/buildroot-at91/dl -v $PWD/output:/home/$USER/buildroot-at91/output rubuschl/at91-sama5d3-buildroot:20191104161353 /bin/bash
-
+$ cd ./docker__buildroot
+$ docker-compose -f ./docker-compose.yml run --rm at91_buildroot /bin/bash
 docker $> build.sh
 ```
 
