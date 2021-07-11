@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    bbb_buildroot:
+        container_name: bbb_buildroot
+        image: ${USER}/bbb_buildroot
+        build:
+            context: build_context
+            dockerfile: Dockerfile
+            args:
+                USER: ${USER}
+
+        user: ${USER}
+        stdin_open: true  ## docker run -i
+        tty: true         ## docker run -i
+        #privileged: true
+
+        environment:
+         - USER
+
+        volumes:
+         - ~/.gitconfig:/home/${USER}/.gitconfig
+         - ~/.ssh:/home/${USER}/.ssh
+         - ./buildroot:/home/${USER}/buildroot  ## folder does not need to be around
+

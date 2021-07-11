@@ -1,12 +1,21 @@
 version: 2.1
 jobs:
- build:
-   machine: true
-   steps:
-     - checkout
+    build_buildroot:
+        machine: true
+        steps:
+        ## install more recent version of docker-compose
+          - run: sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          - run: sudo chmod a+x /usr/local/bin/docker-compose
 
-     # buildroot
-     - run: cd ./docker__buildroot && docker build --build-arg USER=$USER -t rubuschl/at91-sama5d3-buildroot:123 .
+        ## buildroot
+          - checkout
+          - run: cd ./docker__buildroot && docker-compose up
 
-     ## build.sh is turned off, since it exceeds circleci's time limits
-     #- run: cd ./docker__buildroot && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/dl:/home/$USER/buildroot-at91/dl -v $PWD/output:/home/$USER/buildroot-at91/output rubuschl/at91-sama5d3-buildroot:123
+
+## parallelization
+workflows:
+    version: 2
+    build:
+        jobs:
+          - build_buildroot
+
