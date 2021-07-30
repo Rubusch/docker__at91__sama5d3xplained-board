@@ -19,7 +19,7 @@ services:
          - USER
 
         volumes:
-         - ~/.gitconfig:/home/${USER}/.gitconfig
-         - ~/.ssh:/home/${USER}/.ssh
+         - ~/.gitconfig:/home/${USER}/.gitconfig:ro
+         - ~/.ssh:/home/${USER}/.ssh:ro
          - ./buildroot:/home/${USER}/buildroot  ## folder does not need to be around
 
