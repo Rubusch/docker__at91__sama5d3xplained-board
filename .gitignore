@@ -5,3 +5,6 @@
 
 ## ignore output folder
 output
+
+## docker environment
+.env

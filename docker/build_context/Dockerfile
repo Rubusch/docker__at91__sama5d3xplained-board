@@ -4,9 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 ################################################################################
-## the USER is needed to make it available as --build-arg
-
+## environment
 ARG USER="${USER}"
+ARG GID="${GID}"
+ARG UID="${UID}"
 
 
 ################################################################################
@@ -62,22 +63,26 @@ RUN apt-get install -y   \
 ################################################################################
 ## locale settings
 RUN locale-gen en_US.UTF-8
-
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 
 ################################################################################
-## setup user and run stuff under user
-RUN useradd "$USER" -m --password "$USER"
+## user settings
+RUN groupadd -g "$GID" "$USER"
+RUN useradd -m -u "$UID" -g "$GID" -s /bin/bash "$USER"
 RUN usermod -a -G sudo "$USER"
 RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
+RUN mkdir -p /usr/local
+RUN chown -R "${USER}":"${USER}" /usr/local
+RUN mkdir -p /opt
+RUN chown -R "${USER}":"${USER}" /opt
 
 
 ################################################################################
 ## command mode
 USER root
-
+WORKDIR "/home/${USER}"
 COPY build.sh /usr/local/bin/build.sh
 CMD ["/bin/bash", "/usr/local/bin/build.sh"]

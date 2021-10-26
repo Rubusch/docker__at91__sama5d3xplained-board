@@ -13,20 +13,27 @@ https://www.linux4sam.org/bin/view/Linux4SAM/BuildRootBuild
 ## Tools Needed
 
 ```
-$ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-comp\
-\
-ose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-$ sudo chmod a+x /usr/local/bin/docker-compose
+$ sudo apt-get install -y libffi-dev libssl-dev
+$ sudo apt-get install -y python3-dev
+$ sudo apt-get install -y python3 python3-pip
+$ pip3 install docker-compose
 ```
-
-NB: Where 1.28.6 is the latest version (currently not supported by devian/ubuntu packa\
-ge management)
+Make sure, ``~/.local`` is within ``$PATH`` or re-link e.g. it to ``/usr/local``.
 
 
 ## Build
 
+Preparation  
+
 ```
-$ cd ./docker__buildroot/
+$ cd ./docker
+$ echo "UID=$(id -u)" > .env
+$ echo "GID=$(id -g)" >> .env
+```
+
+Building  
+
+```
 $ docker-compose up
 ```
 
