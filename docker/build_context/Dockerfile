@@ -1,43 +1,22 @@
-FROM ubuntu:20.04
-MAINTAINER Lothar Rubusch <lotophagon@protonmail.com>
-ENV DEBIAN_FRONTEND=noninteractive
+################################################################################
+## the USER is needed to make it available as --build-arg
+## in case docker complains for a not set USER, perhaps you forgot to
+## use --build-arg USER=$USER
+ARG USER="${USER}"
+ARG DOCKER_BASE="sandbox"
+ARG DOCKER_BASE_TAG="20211028"
 
 
 ################################################################################
-## environment
-ARG USER="${USER}"
-ARG GID="${GID}"
-ARG UID="${UID}"
+FROM ${USER}/${DOCKER_BASE}:${DOCKER_BASE_TAG} AS at91
+MAINTAINER Lothar Rubusch <l.rubusch@gmail.com>
+ENV DEBIAN_FRONTEND=noninteractive
+
 
 
 ################################################################################
 ## set up apt fully functional
-RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y --purge
-RUN apt-get install -y  \
-        apt-utils
-
-RUN apt-get install -y  \
-        build-essential \
-        libncurses5-dev \
-        zlib1g-dev \
-        gawk \
-        wget \
-        git-core \
-        make \
-        gcc \
-        g++ \
-        bison \
-        flex \
-        binutils \
-        unzip \
-        python \
-        bzip2 \
-        libssl-dev \
-        locales \
-        bc \
-        cpio \
-        mtools \
-        rsync
+USER root
 
 ## (opt) java related packages
 #RUN apt-get install -y openjdk-8-jdk
@@ -61,28 +40,10 @@ RUN apt-get install -y   \
 
 
 ################################################################################
-## locale settings
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
-
-################################################################################
-## user settings
-RUN groupadd -g "$GID" "$USER"
-RUN useradd -m -u "$UID" -g "$GID" -s /bin/bash "$USER"
-RUN usermod -a -G sudo "$USER"
-RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
-RUN mkdir -p /usr/local
-RUN chown -R "${USER}":"${USER}" /usr/local
-RUN mkdir -p /opt
-RUN chown -R "${USER}":"${USER}" /opt
-
-
-################################################################################
 ## command mode
-USER root
-WORKDIR "/home/${USER}"
-COPY build.sh /usr/local/bin/build.sh
+USER ${USER}
+WORKDIR /home/$USER
+
+## setup default script
+COPY *.sh /usr/local/bin/
 CMD ["/bin/bash", "/usr/local/bin/build.sh"]

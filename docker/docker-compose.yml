@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-    at91_buildroot:
-        container_name: at91_buildroot
-        image: ${USER}/at91_buildroot
+    at91:
+        container_name: at91
+        image: ${USER}/at91
         build:
             context: build_context
             dockerfile: Dockerfile
@@ -21,6 +21,6 @@ services:
          - .env
         volumes:
          - ~/.gitconfig:/home/${USER}/.gitconfig:ro
-         - ~/.ssh:/home/${USER}/.ssh:ro
+         - ~/.ssh:/home/${USER}/.ssh
          - ./buildroot:/home/${USER}/buildroot
 

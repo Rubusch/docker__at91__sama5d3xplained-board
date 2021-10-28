@@ -6,5 +6,8 @@
 ## ignore output folder
 output
 
+## docker base image
+sandbox
+
 ## docker environment
 .env

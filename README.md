@@ -18,23 +18,13 @@ $ sudo apt-get install -y python3-dev
 $ sudo apt-get install -y python3 python3-pip
 $ pip3 install docker-compose
 ```
-Make sure, ``~/.local`` is within ``$PATH`` or re-link e.g. it to ``/usr/local``.
+Make sure, ``~/.local`` is within ``$PATH`` or re-link e.g. it to ``/usr/local``.  
 
 
 ## Build
 
-Preparation  
-
 ```
-$ cd ./docker
-$ echo "UID=$(id -u)" > .env
-$ echo "GID=$(id -g)" >> .env
-```
-
-Building  
-
-```
-$ docker-compose up
+$ ./setup.sh
 ```
 
 

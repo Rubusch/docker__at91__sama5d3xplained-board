@@ -9,10 +9,7 @@ jobs:
 
         ## buildroot
           - checkout
-        #  - run: cd ./docker__buildroot && docker-compose up --exit-code-from at91_buildroot
-
-        ## due to build timeout, at least verify built of docker container
-          - run: cd ./docker__buildroot && docker-compose build
+          - run: ./setup.sh ci
 
 ## parallelization
 workflows:
