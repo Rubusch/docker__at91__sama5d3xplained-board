@@ -16,11 +16,17 @@ services:
         tty: true         ## docker run -i
         #privileged: true
         environment:
-         - USER
+          - USER
         env_file:
-         - .env
+          - .env
         volumes:
-         - ~/.gitconfig:/home/${USER}/.gitconfig:ro
-         - ~/.ssh:/home/${USER}/.ssh
-         - ./buildroot:/home/${USER}/buildroot
+          ## folder not need to be around
+          - ~/.gitconfig:/home/${USER}/.gitconfig:ro
+          - ~/.ssh:/home/${USER}/.ssh
+          - ./buildroot:/home/${USER}/buildroot
+          ## folder must be around
+          - type: bind
+            source: ./build_configs
+            target: /home/$USER/configs
+
 

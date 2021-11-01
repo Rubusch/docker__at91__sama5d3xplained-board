@@ -1,17 +1,26 @@
 ################################################################################
-## the USER is needed to make it available as --build-arg
-## in case docker complains for a not set USER, perhaps you forgot to
-## use --build-arg USER=$USER
+## ATTENTION: multistage build
+##
+## based on current USER and TAG, DOCKER_BASE:
+## https://github.com/Rubusch/docker__zephyr-base
+##
+################################################################################
+## base image settings
 ARG USER="${USER}"
 ARG DOCKER_BASE="sandbox"
 ARG DOCKER_BASE_TAG="20211028"
 
 
 ################################################################################
+## base image
 FROM ${USER}/${DOCKER_BASE}:${DOCKER_BASE_TAG} AS at91
 MAINTAINER Lothar Rubusch <l.rubusch@gmail.com>
 ENV DEBIAN_FRONTEND=noninteractive
 
+
+################################################################################
+## environment (applied ARG/ENV must come after FROM declaration)
+ARG USER="${USER}"
 
 
 ################################################################################
@@ -43,7 +52,5 @@ RUN apt-get install -y   \
 ## command mode
 USER ${USER}
 WORKDIR /home/$USER
-
-## setup default script
 COPY *.sh /usr/local/bin/
 CMD ["/bin/bash", "/usr/local/bin/build.sh"]
