@@ -40,6 +40,7 @@ if [ -z "${CONTAINER}" ]; then
 	git clone "https://github.com/Rubusch/docker__${BASE_IMAGE}.git" "${BASE_IMAGE}"
 	cd "${BASE_IMAGE}"
 	git checkout "${BASE_IMAGE_TAG}"
+	cd -
 	build "./${BASE_IMAGE}/docker" "${DRYRUN}"
 	## check again, if container was _really_ build now
 	CONTAINER="$(docker images | grep "${BASE_IMAGE}" | grep "${BASE_IMAGE_TAG}" | awk '{print $3}')"
