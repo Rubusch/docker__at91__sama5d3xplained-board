@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build_buildroot:
+  build:
     machine: true
     steps:
       ## install more recent version of docker-compose
@@ -12,10 +12,3 @@ jobs:
       ## buildroot
       - checkout
       - run: ./setup.sh ci
-
-## parallelization
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build_buildroot
