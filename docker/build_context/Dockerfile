@@ -8,7 +8,7 @@
 ## base image settings
 ARG USER="${USER}"
 ARG DOCKER_BASE="sandbox"
-ARG DOCKER_BASE_TAG="20211028"
+ARG DOCKER_BASE_TAG="20221228"
 
 
 ################################################################################

@@ -14,8 +14,6 @@ build()
 {
 	CONTAINER_NAME="$(grep "container_name:" -r "${1}/docker-compose.yml" | awk -F: '{ print $2 }' | tr -d ' ')"
 	cd "${1}"
-	echo "UID=$(id -u)" > .env
-	echo "GID=$(id -g)" >> .env
 	if [ -n "${2}" ]; then
 		docker-compose build
 	else
