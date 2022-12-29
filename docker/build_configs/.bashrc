@@ -46,7 +46,7 @@ fi
 #esac
 
 ## Comment in the above and uncomment this below for a color prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[00;34m\]orangepi\[\033[00;32m\]<\[\033[01;32m\]\t\[\033[00;32m\]>::\[\033[01;32m\]\u\[\033[00;32m\]("\[\033[01;32m\]\w/\[\033[00;32m\]");\e[0m\n\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[00;34m\]at91\[\033[00;32m\]<\[\033[01;32m\]\t\[\033[00;32m\]>::\[\033[01;32m\]\u\[\033[00;32m\]("\[\033[01;32m\]\w/\[\033[00;32m\]");\e[0m\n\$ '
 
 
 ## If this is an xterm set the title to user@host:dir

@@ -82,36 +82,6 @@
 ;; start doxymacs when opening c/c++ file
 ;(add-hook 'c-mode-common-hook'doxymacs-mode)
 
-;; individual settings, link doxymacs to fetch runtime info from doxygen
-;(setq doxymacs-doxygen-tags "/media/shared/sources/NX_CORE2__etags/ApplicationTest/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/AuthenticationService/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/build_powerpc_debug/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/CanOpen/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Car/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/CDD/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Commons/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Configuration/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/EmbeddedTM/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Gate/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Interfaces/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/KSC/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/MonitoringSupervisor/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/NX100NA/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/OMSServer/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Portal/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/PORTServer/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Processes/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/ServiceHandler/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/TMC/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Tools/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/World/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/ZeroMOM/TAGS"
-;)
-;(setq doxymacs-doxygen-root "/media/shared/sources/NX_CORE2__html")
-
-
-
-
 ;; enable fancy doxygen highlight mode
 ;(defun my-doxymacs-font-lock-hook ()
 ;  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
@@ -120,8 +90,6 @@
 
 ;; load doxymacs at startup
 ;(require 'doxymacs)
-
-
 
 ;;; general C/C++ indention
 ;(autoload 'c++-mode "C++ Editing Mode" t)
@@ -174,7 +142,6 @@
 ;;                                        filename))
 ;;                 (setq indent-tabs-mode t)
 ;;                 (c-set-style "linux-tabs-only")))))
-
 
 
 ;;; C++ formatting
@@ -274,36 +241,6 @@ the character typed."
 ;    font-lock-face eshell-prompt
 ;    front-sticky (font-lock-face read-only)
 ;    rear-nonsticky (font-lock-face read-only))
-
-
-
-
-;(setq tags-table-list '(
-;"/media/shared/sources/NX_CORE2__etags/ApplicationTest/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/AuthenticationService/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/build_powerpc_debug/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/CanOpen/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Car/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/CDD/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Commons/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Configuration/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/EmbeddedTM/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Gate/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Interfaces/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/KSC/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/MonitoringSupervisor/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/NX100NA/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/OMSServer/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Portal/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/PORTServer/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Processes/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/ServiceHandler/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/TMC/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/Tools/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/World/TAGS"
-;"/media/shared/sources/NX_CORE2__etags/ZeroMOM/TAGS"
-;))
-
 
 ;; bitbake & yocto mode
 ;; download: https://github.com/mferland/bb-mode

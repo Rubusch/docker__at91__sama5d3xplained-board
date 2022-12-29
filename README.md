@@ -32,7 +32,7 @@ $ ./setup.sh
 
 ```
 $ cd ./docker__buildroot
-$ docker-compose -f ./docker-compose.yml run --rm at91_buildroot /bin/bash
+$ docker-compose -f ./docker-compose.yml run --rm at91 /bin/bash
 docker $> build.sh
 ```
 
